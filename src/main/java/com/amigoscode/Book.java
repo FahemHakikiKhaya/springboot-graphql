@@ -13,16 +13,21 @@ import java.util.Optional;
  *
  * @author hakik
  */
-public record Book(Integer id, String name, Integer pageCount) {
+public record Book(Integer id, String name, Integer pageCount,Integer authorId) {
 
  
     public static List<Book> books = Arrays.asList(
-        new Book(1,"quran",604),
-        new Book(2,"yarob",605),        
-        new Book(3,"testing",606)
+        new Book(1,"quran",604,1),
+        new Book(2,"yarob",605,2),        
+        new Book(3,"testing",606,1)
     );
 
     public static Optional<Book> getBookById(Integer id) {
         return books.stream().filter(b -> b.id.equals((id))).findFirst();
- }
+    }
+
+    public static List<Book> getBooksByAuthorId(Integer authorId) {
+        return books.stream().filter(b -> b.authorId.equals(authorId)).toList();
+    }
+
 }
